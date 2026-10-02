@@ -5,11 +5,6 @@
 
 ### Chest X-ray image classification with Deep Learning
 
-`<img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">`{=html}
-`<img src="https://img.shields.io/badge/TensorFlow-Keras-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">`{=html}
-`<img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter">`{=html}
-`<img src="https://img.shields.io/badge/Medical_Imaging-Research-168C8C?style=for-the-badge" alt="Medical imaging">`{=html}
-
 **A student project by Aryan Kumar Verma and Rahul Kumar Sahu**\
 *MCA Students · Birla Institute of Technology (BIT), Mesra*
 :::
