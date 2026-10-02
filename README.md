@@ -1,47 +1,248 @@
-# Pneumonia Detection Using CNN (Streamlit)
+::: {align="center"}
+![Pneumonia Detection project banner](assets/project-banner.png)
 
-Educational demo. **Not a medical diagnostic tool.** Consult a healthcare professional for any medical concern.
+# Pneumonia Detection Using CNN
 
-## Structure
+### Chest X-ray image classification with Deep Learning
+
+`<img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">`{=html}
+`<img src="https://img.shields.io/badge/TensorFlow-Keras-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">`{=html}
+`<img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter">`{=html}
+`<img src="https://img.shields.io/badge/Medical_Imaging-Research-168C8C?style=for-the-badge" alt="Medical imaging">`{=html}
+
+**A student project by Aryan Kumar Verma and Rahul Kumar Sahu**\
+*MCA Students · Birla Institute of Technology (BIT), Mesra*
+:::
+
+------------------------------------------------------------------------
+
+## Overview
+
+This project explores how a **Convolutional Neural Network (CNN)** can
+classify chest X-ray images into two categories: **Normal** and
+**Pneumonia**. The notebook covers dataset loading, image preprocessing,
+CNN training, training-history visualization, model saving, and
+evaluation on a separate test set.
+
+> **Medical disclaimer:** This is an educational machine-learning
+> project, not a clinically validated diagnostic system. Do not use it
+> to diagnose, treat, or rule out pneumonia.
+
+## Project workflow
+
+![Project workflow](assets/project-workflow.png)
+
+1.  **Load data** from the train, validation, and test folders.
+2.  **Preprocess images** by resizing them and scaling pixel values.
+3.  **Train the CNN** to learn visual features from labelled chest
+    X-rays.
+4.  **Classify images** as Normal or Pneumonia.
+5.  **Evaluate the model** on held-out test data using metrics generated
+    by the notebook.
+
+## Features
+
+-   Chest X-ray image classification using a CNN.
+-   Image resizing and pixel-value normalization.
+-   Training and validation workflow.
+-   Loss and accuracy plots.
+-   Saved Keras model for reuse.
+-   Test-set evaluation, including classification metrics and a
+    confusion matrix in the corrected notebook.
+-   Optional Streamlit interface for image upload and prediction, if you
+    include the app file.
+
+## Technology stack
+
+  -----------------------------------------------------------------------
+  Technology                          Purpose
+  ----------------------------------- -----------------------------------
+  Python                              Main programming language
+
+  TensorFlow / Keras                  Build and train the CNN
+
+  NumPy                               Numerical operations and arrays
+
+  Matplotlib                          Visualize images and training
+                                      history
+
+  scikit-learn                        Evaluation metrics and confusion
+                                      matrix
+
+  Pillow                              Image loading and preprocessing
+
+  Jupyter Notebook                    Interactive development
+
+  Streamlit *(optional)*              Web interface for image upload and
+                                      prediction
+  -----------------------------------------------------------------------
+
+## Dataset
+
+The project uses the **Chest X-Ray Images (Pneumonia)** dataset.
+
+-   **Dataset:** [Kaggle --- Chest X-Ray Images
+    (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
+-   Download and extract the dataset locally.
+-   Keep the original train, validation, and test splits separate. Do
+    not move test images into training.
+
+Expected folder structure:
+
+``` text
+chest_xray/
+├── train/
+│   ├── NORMAL/
+│   └── PNEUMONIA/
+├── val/
+│   ├── NORMAL/
+│   └── PNEUMONIA/
+└── test/
+    ├── NORMAL/
+    └── PNEUMONIA/
 ```
-Pneumonia-Detection/
-├── app.py
-├── trained.h5                          # your trained model (from the repo)
-├── Pneumonia_detection_using_CNN.ipynb # your original notebook (unchanged)
-├── requirements.txt
+
+Configure the notebook's dataset-root setting to point to the
+`chest_xray` directory on your computer.
+
+## How the CNN works
+
+The network uses convolution and pooling layers to learn image features,
+followed by dense layers for binary classification.
+
+-   **Convolution:** learns local patterns such as edges and textures.
+-   **Pooling:** reduces feature-map dimensions.
+-   **Flatten / Dense layers:** combine learned features for
+    classification.
+-   **Sigmoid output:** for a single-output model, produces a score
+    between 0 and 1 for the positive class.
+
+## Installation
+
+``` bash
+python -m pip install --upgrade pip
+python -m pip install tensorflow numpy matplotlib scikit-learn pillow jupyter
+```
+
+For the optional Streamlit interface:
+
+``` bash
+python -m pip install streamlit
+```
+
+## Run the notebook
+
+1.  Clone or download this repository.
+
+2.  Download and extract the dataset using the structure above.
+
+3.  Open a terminal in the project directory.
+
+4.  Start Jupyter:
+
+    ``` bash
+    jupyter notebook
+    ```
+
+5.  Open `Pneumonia_detection_using_CNN_corrected.ipynb`.
+
+6.  Update the dataset path if needed.
+
+7.  Run the cells from top to bottom.
+
+Training may take time and can benefit from a GPU. Actual evaluation
+results will appear when the notebook runs; **this README does not claim
+a specific accuracy**.
+
+## Optional: run the Streamlit app
+
+If you include the Streamlit application and have trained the model,
+place `trained.h5` where the app expects it, then run:
+
+``` bash
+python -m streamlit run app.py
+```
+
+Upload a supported chest X-ray image (JPG/JPEG/PNG) to view the model's
+output. Ensure the app's class order and preprocessing match the
+settings used during training.
+
+## Repository structure
+
+``` text
+.
+├── Pneumonia_detection_using_CNN_corrected.ipynb
+├── app.py                   # optional Streamlit interface
+├── trained.h5               # generated after training; usually not committed
+├── chest_xray/               # dataset; download separately
+├── assets/
+│   ├── project-banner.png
+│   └── project-workflow.png
 └── README.md
 ```
 
-## Install
-```bash
-git clone https://github.com/Aryan-Kr-Ve/Pneumonia-detection-using-Convolutional-neural-networks.git
-cd Pneumonia-detection-using-Convolutional-neural-networks
-# copy app.py and requirements.txt into this folder
-python -m venv venv
-venv\Scripts\activate          # Windows   (macOS/Linux: source venv/bin/activate)
-pip install -r requirements.txt
+**Tip:** Large datasets and model files may exceed GitHub's ordinary
+file limits. Consider excluding them from Git and adding these entries
+to `.gitignore`:
+
+``` gitignore
+chest_xray/
+trained.h5
+.keras/
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+venv/
 ```
 
-## Run
-```bash
-streamlit run app.py
-```
+## Evaluation
 
-## Verify these 2 settings (top of app.py)
-Input size, colour mode and output type are read from the model automatically. Two things cannot be, so confirm them in your notebook:
+Use the held-out test split to assess generalization. Review more than
+accuracy alone:
 
-1. `PIXEL_SCALE` - did training use `rescale=1./255` (keep 255.0) or no scaling (set 1.0)?
-2. `CLASS_NAMES` order - run this in the notebook after training/loading:
-   ```python
-   print(train_generator.class_indices)   # e.g. {'NORMAL': 0, 'PNEUMONIA': 1}
-   ```
-   Keep `["Normal", "Pneumonia"]` if NORMAL is 0; otherwise swap them.
+-   **Precision:** among images predicted as Pneumonia, the proportion
+    labelled Pneumonia.
+-   **Recall / sensitivity:** among images labelled Pneumonia, the
+    proportion identified by the model.
+-   **Specificity:** among Normal images, the proportion correctly
+    identified.
+-   **F1-score:** combines precision and recall.
+-   **Confusion matrix:** summarizes correct and incorrect predictions
+    by class.
 
-If you didn't use generators, check how labels were built (which class got 0 and 1) and how images were resized/normalised.
+Results depend on the dataset and training configuration. Report the
+metrics produced by your own run; validation performance is not a
+substitute for final test evaluation.
 
-## Troubleshooting
-- **Model file not found:** put `trained.h5` next to `app.py` (or in `model/`) and run from that folder.
-- **Model fails to load / deserialization error:** the `.h5` was saved with a different TensorFlow/Keras version. Install the version used in your notebook (`pip install tensorflow==<version>`), or re-save the model in the notebook with `model.save("trained.keras")` and update `MODEL_CANDIDATES`.
-- **`No module named tensorflow`:** TensorFlow needs a supported Python version (3.9-3.12); create a venv with one.
-- **Wrong or always-the-same predictions:** re-check the two settings above.
-- **Large `.h5` not on disk after clone:** if it is stored with Git LFS, run `git lfs pull`.
+## Limitations and responsible use
+
+-   Performance may not generalize to different hospitals, scanners,
+    image quality, or patient populations.
+-   Other conditions may produce similar X-ray patterns.
+-   False positives and false negatives are possible.
+-   Model confidence is not the same as clinical certainty.
+-   Medical decisions should be made by qualified healthcare
+    professionals using appropriate clinical information.
+
+## Contributors
+
+  Name                    Affiliation
+  ----------------------- ------------------------
+  **Aryan Kumar Verma**   MCA Student, BIT Mesra
+  **Rahul Kumar Sahu**    MCA Student, BIT Mesra
+
+## Acknowledgements
+
+-   The creators of the [Chest X-Ray Images (Pneumonia)
+    dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia).
+-   The open-source Python, TensorFlow/Keras, Jupyter, and
+    scientific-computing communities.
+
+------------------------------------------------------------------------
+
+::: {align="center"}
+**Made as an MCA academic project at BIT Mesra**
+
+If you find this project useful for learning, consider giving the
+repository a ⭐.
+:::
