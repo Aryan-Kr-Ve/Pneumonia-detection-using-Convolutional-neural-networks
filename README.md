@@ -1,4 +1,3 @@
-::: {align="center"}
 ![Pneumonia Detection project banner](assets/project-banner.png)
 
 # Pneumonia Detection Using CNN
@@ -235,7 +234,6 @@ substitute for final test evaluation.
 
 ------------------------------------------------------------------------
 
-::: {align="center"}
 **Made as an MCA academic project at BIT Mesra**
 
 If you find this project useful for learning, consider giving the
